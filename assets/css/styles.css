@@ -1,0 +1,1090 @@
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color:#f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.container-fluid {
+    padding: 0 20px;
+}
+
+/* Grid Layout */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Styles (Movies & Series) */
+.movie-card, .series-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover, .series-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.movie-card a, .series-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.movie-card img, .series-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.movie-card h3, .series-card h3 {
+    margin: 15px 10px 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.movie-card p, .series-card p {
+    margin: 5px 10px;
+    font-size: 14px;
+    color: #777777;
+}
+
+.movie-card p:first-of-type, .series-card p:first-of-type {
+    font-weight: bold;
+    color: #555555;
+}
+
+.movie-card p:last-of-type, 
+.series-card p:last-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #777777;
+    margin: 5px 0;
+}
+
+/* Star Alignment */
+.movie-card p:last-of-type .star, 
+.series-card p:last-of-type .star {
+    color: #f5c518; /* Gold color for the star */
+    font-size: 16px;
+    margin-left: 5px; /* Space between rating and star */
+    vertical-align: middle;
+}
+
+/* Search Section Styling */
+.search-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.search-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #25bba5;
+    background: linear-gradient(to right, #25bba5, #2a8df7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    flex-wrap: wrap; /* Allowing wrapping for mobile view */
+}
+
+#search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    margin-bottom: 0.5rem;
+}
+
+#search-input:focus {
+    border-color: #25bba5;
+}
+
+#search-button {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(to right, #25bba5, #2a8df7);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 0.5rem;
+}
+
+#search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    #search-input, #search-button {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .search-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #search-input {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    #search-button {
+        width: 100%;
+    }
+
+    .grid-layout {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .grid-layout {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .movie-card img, .series-card img {
+        height: 200px;
+    }
+
+    .movie-card p:last-of-type, 
+    .series-card p:last-of-type {
+        font-size: 13px; /* Slightly smaller text for mobile */
+    }
+
+    .movie-card p:last-of-type .star, 
+    .series-card p:last-of-type .star {
+        margin-left: 3px; /* Reduce spacing on smaller screens */
+        font-size: 14px;  /* Slightly smaller star */
+    }
+}
+
+
+/* General Reset */
+
+
+
+/* Movie Poster Styling */
+#movie-poster  #series-poster{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Hover Effects */
+#movie-poster:hover #series-poster:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile View Adjustment */
+@media (max-width: 768px) {
+    #movie-poster {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+/* Star Rating Styling */
+span {
+    font-size: 2rem; /* Size of the stars */
+    color: #ffd700; /* Golden color for the stars */
+    font-weight: bold;
+}
+
+/* Hover Effect for Stars */
+span:hover {
+    color: #ffcc00; /* Slightly brighter gold when hovered */
+}
+
+/* Optional: If you want the stars to look like they are interactive */
+.rating span {
+    transition: color 0.3s ease;
+}
+/* Adding Green & Blue Border with Gradients for Series */
+#series-poster {
+    border: 5px solid transparent;
+    background-image: linear-gradient(to right, #28a745, #007bff);
+    background-clip: border-box;
+}
+
+/* Series Details Section */
+#series-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('assets/images/series-bg.jpg') center/cover no-repeat;
+    border-radius: 10px;
+    color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Series Background */
+
+
+
+/* Series Poster */
+.series-poster {
+    flex: 1;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.series-poster img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Series Info */
+.series-info {
+    flex: 2;
+    max-width: 700px;
+}
+
+/* Series Title */
+#series-title {
+/* Styling for movie title */
+
+    font-size: 2.5rem; /* Large font size for the title */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-bottom: 10px; /* Adds space below the title */
+    color: #fff; /* White text color */
+    text-transform: uppercase; /* Capitalizes the text */
+    letter-spacing: 2px; /* Adds spacing between letters for a dramatic effect */
+    
+    /* Animation for glowing text */
+    animation: glow 1.5s ease-in-out infinite alternate;
+    
+    /* Text shadow for glowing effect */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.6), 
+        0 0 10px rgba(255, 255, 255, 0.5), 
+        0 0 15px rgba(255, 255, 255, 0.4), 
+        0 0 20px rgba(255, 0, 0, 0.7), 
+        0 0 30px rgba(255, 0, 0, 0.7), 
+        0 0 40px rgba(255, 0, 0, 0.7);
+}
+
+/* Animation for glowing effect */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.6), 
+            0 0 10px rgba(255, 255, 255, 0.5), 
+            0 0 15px rgba(255, 255, 255, 0.4), 
+            0 0 20px rgba(255, 0, 0, 0.7), 
+            0 0 30px rgba(255, 0, 0, 0.7), 
+            0 0 40px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+        text-shadow: 
+            0 0 8px rgba(255, 255, 255, 0.8), 
+            0 0 15px rgba(255, 255, 255, 0.7), 
+            0 0 20px rgba(255, 255, 255, 0.6), 
+            0 0 30px rgba(255, 0, 0, 1), 
+            0 0 40px rgba(255, 0, 0, 1), 
+            0 0 50px rgba(255, 0, 0, 1);
+    }
+    100% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.6), 
+            0 0 10px rgba(255, 255, 255, 0.5), 
+            0 0 15px rgba(255, 255, 255, 0.4), 
+            0 0 20px rgba(255, 0, 0, 0.7), 
+            0 0 30px rgba(255, 0, 0, 0.7), 
+            0 0 40px rgba(255, 0, 0, 0.7);
+    }
+}
+
+/* Styling for movie title */
+#movie-title {
+    font-size: 2.5rem; /* Large font size for the title */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-bottom: 10px; /* Adds space below the title */
+    color: #fff; /* White text color */
+    text-transform: uppercase; /* Capitalizes the text */
+    letter-spacing: 2px; /* Adds spacing between letters for a dramatic effect */
+    
+    /* Animation for glowing text */
+    animation: glow 1.5s ease-in-out infinite alternate;
+    
+    /* Text shadow for glowing effect */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.6), 
+        0 0 10px rgba(255, 255, 255, 0.5), 
+        0 0 15px rgba(255, 255, 255, 0.4), 
+        0 0 20px rgba(255, 0, 0, 0.7), 
+        0 0 30px rgba(255, 0, 0, 0.7), 
+        0 0 40px rgba(255, 0, 0, 0.7);
+}
+
+/* Animation for glowing effect */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.6), 
+            0 0 10px rgba(255, 255, 255, 0.5), 
+            0 0 15px rgba(255, 255, 255, 0.4), 
+            0 0 20px rgba(255, 0, 0, 0.7), 
+            0 0 30px rgba(255, 0, 0, 0.7), 
+            0 0 40px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+        text-shadow: 
+            0 0 8px rgba(255, 255, 255, 0.8), 
+            0 0 15px rgba(255, 255, 255, 0.7), 
+            0 0 20px rgba(255, 255, 255, 0.6), 
+            0 0 30px rgba(255, 0, 0, 1), 
+            0 0 40px rgba(255, 0, 0, 1), 
+            0 0 50px rgba(255, 0, 0, 1);
+    }
+    100% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 255, 0.6), 
+            0 0 10px rgba(255, 255, 255, 0.5), 
+            0 0 15px rgba(255, 255, 255, 0.4), 
+            0 0 20px rgba(255, 0, 0, 0.7), 
+            0 0 30px rgba(255, 0, 0, 0.7), 
+            0 0 40px rgba(255, 0, 0, 0.7);
+    }
+}
+
+
+/* Adding Green & Blue Border with Gradients */
+#movie-poster {
+    border: 5px solid transparent;
+    background-image: linear-gradient(to right, #28a745, #007bff);
+    background-clip: border-box;
+}
+/* Background for movie details section */
+#movie-background #series-background  {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: -1;
+    background-size: cover; /* Ensures the background scales proportionally */
+    background-position: center; /* Centers the background */
+    background-repeat: no-repeat; /* Prevents tiling */
+    filter: brightness(0.8); /* Optional: dims the background for better content visibility */
+}
+
+/* Movie Details Section */
+#movie-details, #series-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    background: linear-gradient(to right, rgba(191, 126, 255, 0.8), rgba(232, 255, 62, 0.5));
+    border-radius: 10px;
+    color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* Make sure the content is on top of the background */
+    z-index: 1; /* Ensure content stays above background */
+    animation: glowc 6s infinite alternate; /* Add the glow animation */
+}
+
+@keyframes glowc {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 4, 255, 0.5), 0 0 20px rgba(232, 255, 62, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgb(23, 13, 116), 0 0 40px rgba(232, 255, 62, 1);
+    }
+}
+
+
+/* Movie poster styling */
+.movie-poster img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+/* Movie info section */
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Download links */
+.download-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Base button style */
+.download-links .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+/* Add specific styling for buttons with the _iH() function */
+.download-links .btn[onclick*="_iH"] {
+    background-color: #28a745; /* Green color for _iH buttons */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for _iH buttons */
+.download-links .btn[onclick*="_iH"]:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Active state for _iH buttons */
+.download-links .btn[onclick*="_iH"]:active {
+    background-color: #1e7e34;
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional focus effect */
+.download-links .btn[onclick*="_iH"]:focus {
+    outline: 2px solid #ffc107;
+    outline-offset: 3px;
+}
+/* Language options */
+.language-options img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+/* Media Query for Mobile Adjustments */
+@media (max-width: 768px) {
+    #movie-details, #series-details {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .movie-poster img {
+        max-width: 150px;
+        margin-bottom: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .download-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .language-options {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+/* Styling for download links container */
+.download-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds space between each button */
+    margin-top: 20px; /* Adds space at the top of the download links section */
+    align-items: center; /* Centers the buttons horizontally */
+}
+
+/* Button styling */
+.download-links .btn {
+    background-color: #09b982; /* Green button background */
+    color: white; /* White text color */
+    padding: 12px 20px; /* Adjust padding for better button sizing */
+    margin: 5px 0; /* Vertical margin between buttons */
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem; /* Sets a readable font size */
+    border-radius: 8px; /* Slightly rounded corners */
+    width: 100%; /* Makes buttons take full width of container */
+    max-width: 300px; /* Limits the max width for larger screens */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Adds a smooth transition effect */
+}
+
+/* Button hover effect */
+.download-links .btn:hover {
+    background-color: #25bba5; /* Darker green on hover */
+    transform: translateY(-3px); /* Slight upward movement on hover */
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+    /* Adjust button padding and max-width for smaller screens */
+    .download-links .btn {
+        padding: 10px 18px;
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+
+
+/* Movie Poster */
+.movie-poster {
+    flex: 1;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.movie-poster img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Movie Info */
+.movie-info {
+    flex: 2;
+    max-width: 700px;
+}
+
+
+
+
+
+
+
+/* Rating & Status */
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating span {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.status {
+    background-color: #28a745;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Movie Overview */
+#movie-overview {
+    font-family: "American Typewriter", serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#series-overview {
+    font-family: "American Typewriter", serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Language Options */
+.language-options {
+    margin: 20px 0;
+    font-family: "Stencil Std", fantasy;
+}
+
+.language-options p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-family: "Stencil Std", fantasy;
+}
+
+.language-options img {
+    width: 30px;
+    height: 20px;
+    margin-right: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+}
+
+.language-options img:hover {
+    transform: scale(1.2); /* Slight zoom effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+/* Card styling for the container (optional) */
+.language-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: "Stencil Std", fantasy;
+}
+
+.language-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Action Buttons */
+.action-buttons {
+    margin: 20px 0;
+}
+
+.action-buttons button {
+    background-color: #25bba5;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background-color: #2a8df7;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #movie-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-poster {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .movie-info {
+        text-align: center;
+    }
+
+    .language-options img {
+        width: 25px;
+        height: 16px;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .download-links .btn {
+        width: 100%;
+    }
+}
+/* Responsive Design for Series */
+@media (max-width: 768px) {
+    #series-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .series-poster {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .series-info {
+        text-align: center;
+    }
+
+    .language-options img {
+        width: 25px;
+        height: 16px;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .download-links .btn {
+        width: 100%;
+    }
+}
+
+
+/* Download Links */
+h3 {
+    font-size: 2.5rem; /* Large font size for better visibility */
+    color: #bb2525; /* Teal color for the text */
+    text-align: center; /* Centers the text */
+    margin-top: 40px; /* Space above the title */
+    text-transform: uppercase; /* Capitalizes the text */
+    letter-spacing: 2px; /* Adds spacing between the letters */
+    font-weight: bold; /* Makes the text bold */
+    font-family: 'Impact', sans-serif; /* Impact for strong emphasis */
+    animation: fadeIn 1s ease-out; /* Fade-in animation for h2 */
+}
+
+/* Fade-in animation for h2 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Starts from slightly above */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Ends at the normal position */
+    }
+}
+
+/* Styling for the query term inside the span */
+#query-term {
+    font-style: italic;
+    color: #25bba5;  /* Custom green color to highlight the query term */
+}
+
+/* Animation for fading in the header */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Header (h2) Styling */
+/* Professional style for h2 */
+h2 {
+    font-size: 2.5rem; /* Large font size for better visibility */
+    color: #231b1b; /* Teal color for the text */
+    text-align: center; /* Centers the text */
+    margin-top: 40px; /* Space above the title */
+    text-transform: uppercase; /* Capitalizes the text */
+    letter-spacing: 2px; /* Adds spacing between the letters */
+    font-weight: bold; /* Makes the text bold */
+    font-family: 'Impact', sans-serif; /* Impact for strong emphasis */
+    animation: fadeIn 1s ease-out; /* Fade-in animation for h2 */
+}
+
+/* Fade-in animation for h2 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Starts from slightly above */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Ends at the normal position */
+    }
+}
+
+/* Button Styling */
+#watch-movie {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #28a745; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    animation: glown 2s infinite alternate; /* Glow animation */
+}
+#watch-series {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #28a745; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    animation: glown 2s infinite alternate; /* Glow animation */
+}
+
+/* Glow Animation */
+@keyframes glown {
+    0% {
+        box-shadow: 0 0 10px #28a745, 0 0 20px #28a745, 0 0 30px #28a745;
+    }
+    100% {
+        box-shadow: 0 0 20px #34d058, 0 0 40px #34d058, 0 0 60px #34d058;
+    }
+}
+
+/* Hover Effect */
+#watch-movie:hover {
+    
+    transform: scale(1.1); /* Slightly enlarges on hover */
+    background-color: #34d058; /* Brighter green */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+#watch-series:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+    background-color: #34d058; /* Brighter green */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+/* Secondary Button Styling */
+#watch-trailer {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #ffc107; /* Yellow background */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+/* Hover Effect for Trailer Button */
+#watch-trailer:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+    background-color: #ffda33; /* Brighter yellow */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+/* Responsive Layout for Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
+    gap: 15px; /* Spacing between buttons */
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    #watch-movie,
+    #watch-series,
+    #watch-trailer {
+        width: 100%; /* Full width on mobile */
+    }
+}
+
+/* Modal Background */
+#trailer-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    z-index: 1000;
+    align-items: center; /* Center the modal vertically */
+    justify-content: center; /* Center the modal horizontally */
+}
+
+/* Modal Content */
+#trailer-modal > div {
+    position: relative;
+    width: 90%; /* Adjust modal width */
+    max-width: 800px; /* Maximum width for larger screens */
+    background: #000; /* Black background for the content */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent content overflow */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5); /* Add a shadow for better visibility */
+}
+
+/* Close Button */
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#close-modal:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+/* Trailer Iframe */
+#trailer-iframe {
+    width: 100%;
+    height: 450px; /* Default height for the iframe */
+    border: none;
+    background: #000;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #trailer-iframe {
+        height: 300px; /* Adjust iframe height for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #trailer-iframe {
+        height: 250px; /* Further adjustment for very small screens */
+    }
+}
+/* animations.css */
+
+/* Fade-out animation for the body */
+body {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.fade-out {
+    opacity: 0.5; /* Dim the background slightly */
+}
+
+/* Loader container */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show the loader during fade-out */
+body.fade-out #page-loader {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Loader image */
+#page-loader img {
+    width: 100px; /* Adjust the logo size */
+    animation: spin 2s linear infinite; /* Optional spinning animation */
+}
+
+/* Spinning animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Paragraph styling for "Waiting for task completion..." */

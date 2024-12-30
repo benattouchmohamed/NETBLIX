@@ -1,0 +1,95 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Impact', sans-serif; /* Impact font family */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header Section */
+#header-general {
+    display: flex;
+    justify-content: space-between; /* Align the logo and icons */
+    align-items: center;
+    padding: 10px 20px;
+    background: #f6f8fd;
+    background-color: #f6f8fd;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#header-general.dark-mode-enabled {
+    background-color: #333;
+    color: #f6f8fd;
+}
+
+/* Logo Section */
+#logo-general {
+    display: flex;
+    justify-content: center; /* Center the logo */
+    align-items: center;
+    flex-grow: 1;
+}
+
+#logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#logo-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Logo Text Styling */
+#logo-span, #logo-span2 {
+    font-size: 2rem; /* Adjust font size */
+    font-weight: bold;
+}
+
+/* Logo Colors */
+#logo-span {
+    color: #2196F3; /* Blue */
+}
+
+#logo-span2 {
+    color: #4CAF50; /* Green */
+}
+
+/* Icons Section */
+#icons-general {
+    display: flex;
+    align-items: center;
+}
+
+#dark-mode-toggle {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark Mode Styling */
+body.dark-mode-enabled {
+    background-color: #121212;
+    color: #f6f8fd;
+}
+
+body.dark-mode-enabled a {
+    color: #4CAF50;
+}
+
+#header-general.dark-mode-enabled #dark-mode-toggle {
+    filter: invert(100%);
+    
+}
